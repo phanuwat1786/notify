@@ -6,7 +6,7 @@ readme = "README.md"
 authors = [
     { name = "Phanuwat Suwan", email = "phanuwatsuwan04@gmail.com" }
 ]
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dependencies = [
     "discord-webhook>=1.4.1",
     "dotenv>=0.9.9"

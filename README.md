@@ -1,1 +1,2 @@
-## Python package contain methods to send notify to various destination eg. Discord, Email
+# Notify
+Python package contain methods to send notify to various destination eg. Discord, Email.
