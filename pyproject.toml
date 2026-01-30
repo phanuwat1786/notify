@@ -1,0 +1,17 @@
+[project]
+name = "notify"
+version = "0.1.0"
+description = "some of predifined notify method to various source eg. discord, email"
+readme = "README.md"
+authors = [
+    { name = "Phanuwat Suwan", email = "phanuwatsuwan04@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "discord-webhook>=1.4.1",
+    "dotenv>=0.9.9"
+]
+
+[build-system]
+requires = ["uv_build>=0.9.17,<0.10.0"]
+build-backend = "uv_build"
