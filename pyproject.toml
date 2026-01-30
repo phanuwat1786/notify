@@ -1,7 +1,7 @@
 [project]
 name = "notify"
 version = "0.1.0"
-description = "some of predifined notify method to various source eg. discord, email"
+description = "some of predifined notify method to various destination eg. discord, email"
 readme = "README.md"
 authors = [
     { name = "Phanuwat Suwan", email = "phanuwatsuwan04@gmail.com" }

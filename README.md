@@ -1,1 +1,1 @@
-## Collection of python package made for learnging and specific use.
+## Python package contain methods to send notify to various destination eg. Discord, Email
