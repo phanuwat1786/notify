@@ -3,7 +3,6 @@ from discord_webhook import DiscordWebhook,DiscordEmbed
 from dotenv import load_dotenv
 import os
 from typing import Self,Literal
-
 class DiscordNotify():
     """
     Object that store discord webhook url along with some other parameters and function to send messages/embed.
@@ -80,3 +79,16 @@ def from_env(
 
     webhook = os.getenv(key = variable_name)
     return DiscordNotify(webhook= webhook,username = username)
+
+def dag_fail_callback(webhook: str ,context: dict):
+    """
+    callback function for airflow to send message to discord when dag failed.
+    
+    :param webhook: discord webhook.
+    :type webhook: str
+    :param context: airflow context at dag fail state in form of dictionary. 
+    :type context: dict
+    """
+
+    wh = DiscordNotify(webhook= webhook)
+    wh.send_simple_text(message= str(context))

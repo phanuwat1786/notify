@@ -9,7 +9,7 @@ authors = [
 requires-python = ">=3.10"
 dependencies = [
     "discord-webhook>=1.4.1",
-    "dotenv>=0.9.9"
+    "dotenv>=0.9.9",
 ]
 
 [build-system]
