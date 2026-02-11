@@ -1,6 +1,6 @@
 [project]
 name = "notify"
-version = "0.2.0"
+version = "0.2.1"
 description = "some of predifined notify method to various destination eg. discord, email"
 readme = "README.md"
 authors = [
@@ -8,8 +8,10 @@ authors = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "apache-airflow==2.10.5",
     "discord-webhook>=1.4.1",
     "dotenv>=0.9.9",
+    "pendulum>=3.2.0",
 ]
 
 [build-system]
