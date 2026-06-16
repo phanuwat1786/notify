@@ -3,7 +3,6 @@ from discord_webhook import DiscordWebhook,DiscordEmbed
 from dotenv import load_dotenv
 import os
 from typing import Literal
-from airflow.models import Variable
 import io
 import pendulum
 class DiscordNotify():
@@ -91,32 +90,3 @@ def from_env(
 
     webhook = os.getenv(key = variable_name)
     return DiscordNotify(webhook= webhook,username = username)
-
-def task_fail_callback(webhook_variable_key: str,context: dict):
-    """
-    callback function for airflow to send message to discord when task failed.
-
-    This function read Task and Dag run detail from airflow provided's context  then send notify message to discord.
-
-    :param webhook_variable_key: airflow variable key that store designated discord webhook.
-    :param context: airflow context at dag fail state from task.
-    """
-    webhook = Variable.get(webhook_variable_key)
-    wh = DiscordNotify(webhook= webhook,username= "Dag run error")
-
-    ti = context['ti']
-    dag_id = str(ti.dag_id)
-    task_id = str(ti.task_id)
-    execution_time = pendulum.instance(ti.start_date).in_timezone( tz = "Asia/Bangkok").to_datetime_string()
-    prev_success_time = context["prev_start_date_success"].in_timezone(tz = 'Asia/Bangkok').to_datetime_string()
-    
-    embed = DiscordEmbed(title = "Dag Run Error", color = DiscordNotify.embeded_red)
-    embed.add_embed_field(name = "Dag id",value = dag_id)
-    embed.add_embed_field(name = "Task id", value = task_id)
-    embed.add_embed_field(name = "เวลารัน", value = execution_time,inline = False)
-    embed.add_embed_field(name = "เวลารันที่รันสำเร็จครั้งล่าสุด", value = prev_success_time if prev_success_time is not None else 'ไม่มี', inline = False)
-
-    wh.send_embeded(embed= embed)
-
-    exception = str(dict(context).get('exception'))
-    wh.send_text_attachment(text= exception)
